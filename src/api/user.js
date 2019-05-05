@@ -1,10 +1,20 @@
 import request from '@/utils/request'
-
+import qs from 'qs'
 export function login(data) {
   return request({
-    url: '/user/login',
+    url: '/dev-api/oauth/token',
     method: 'post',
-    data
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    emulateJSON: true,
+    data: qs.stringify({
+      username: data.username,
+      password: data.password,
+      grant_type: 'password',
+      client_id: 'test',
+      client_secret: '123456'
+    })
   })
 }
 

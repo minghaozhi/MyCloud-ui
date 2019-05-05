@@ -5,7 +5,7 @@ import { getToken } from '@/utils/auth'
 
 // create an axios instance
 const service = axios.create({
-  baseURL: process.env.VUE_APP_BASE_API, // api 的 base_url
+  // baseURL: process.env.VUE_APP_BASE_API, // api 的 base_url
   withCredentials: true, // 跨域请求时发送 cookies
   timeout: 5000 // request timeout
 })
@@ -21,6 +21,7 @@ service.interceptors.request.use(
     return config
   },
   error => {
+    console.log(111)
     // Do something with request error
     console.log(error) // for debug
     return Promise.reject(error)
@@ -41,7 +42,8 @@ service.interceptors.response.use(
    */
   response => {
     const res = response.data
-    if (res.code !== 20000) {
+    console.log(res.access_token)
+    if (res.access_token === '') {
       Message({
         message: res.message || 'error',
         type: 'error',

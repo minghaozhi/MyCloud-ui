@@ -20,9 +20,9 @@ export function login(data) {
 
 export function getInfo(token) {
   return request({
-    url: '/user/info',
+    url: '/dev-api/user',
     method: 'get',
-    params: { token }
+    params: { access_token: token }
   })
 }
 

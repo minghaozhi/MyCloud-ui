@@ -54,7 +54,6 @@ const actions = {
         }
 
         const { roles, name, avatar } = data.data
-        debugger
         // roles must be a non-empty array
         if (!roles || roles.length <= 0) {
           reject('getInfo: roles must be a non-null array!')
@@ -63,7 +62,7 @@ const actions = {
         commit('SET_ROLES', roles)
         commit('SET_NAME', name)
         commit('SET_AVATAR', avatar)
-        resolve(data)
+        resolve(data.data)
       }).catch(error => {
         reject(error)
       })

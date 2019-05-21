@@ -26,10 +26,14 @@ export function getInfo(token) {
   })
 }
 
-export function logout() {
+export function logout(token) {
   return request({
-    url: '/user/logout',
-    method: 'post'
+    url: '/dev-api/oauth/token',
+    method: 'DELETE',
+    params: { token: token,
+      grant_type: 'password',
+      client_id: 'test',
+      client_secret: '123456' }
   })
 }
 
